@@ -1,4 +1,5 @@
 from PyQt6.QtWidgets import QApplication, QMainWindow, QInputDialog, QDialog
+from PyQt6.QtCore import QTimer
 from PyQt6 import QtWidgets
 import sys
 import io
@@ -18,7 +19,7 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
     <x>0</x>
     <y>0</y>
     <width>708</width>
-    <height>519</height>
+    <height>511</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -34,7 +35,8 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">background: rgb(249, 248, 242);
+    <string notr="true">background-color: rgb(54, 54, 54);
+
 </string>
    </property>
    <widget class="QLabel" name="label">
@@ -47,7 +49,8 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: #000000</string>
+     <string notr="true">text-align: center;
+color: #ffffff;</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:18pt; font-weight:600;&quot;&gt;Вход/Регистрация&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -56,29 +59,31 @@ template = '''<?xml version="1.0" encoding="UTF-8"?>
    <widget class="QLineEdit" name="password">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>240</y>
-      <width>133</width>
-      <height>22</height>
+      <x>318</x>
+      <y>241</y>
+      <width>131</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: #e9e8e1;
-border: 2px solid rgba(208, 207, 202, 0.9);
-color: #000000</string>
+     <string notr="true">background-color: #3e3e3e;
+border: 2px inset lightblue;
+color: #ffffff;
+text-align: center;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>266</x>
-      <y>206</y>
-      <width>40</width>
+      <x>272</x>
+      <y>207</y>
+      <width>34</width>
       <height>16</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: #000000</string>
+     <string notr="true">text-align: center;
+color: #ffffff;</string>
     </property>
     <property name="text">
      <string>Логин:</string>
@@ -87,14 +92,15 @@ color: #000000</string>
    <widget class="QLabel" name="label_3">
     <property name="geometry">
      <rect>
-      <x>266</x>
-      <y>240</y>
-      <width>48</width>
+      <x>271</x>
+      <y>241</y>
+      <width>41</width>
       <height>16</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: #000000</string>
+     <string notr="true">text-align: center;
+color: #ffffff;</string>
     </property>
     <property name="text">
      <string>Пароль:</string>
@@ -103,22 +109,23 @@ color: #000000</string>
    <widget class="QLineEdit" name="login">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>206</y>
-      <width>133</width>
-      <height>22</height>
+      <x>318</x>
+      <y>207</y>
+      <width>131</width>
+      <height>20</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: #e9e8e1;
-border: 2px solid rgba(208, 207, 202, 0.9);
-color: #000000</string>
+     <string notr="true">background-color: #3e3e3e;
+border: 2px inset lightblue;
+color: #ffffff;
+text-align: center;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="getlog">
     <property name="geometry">
      <rect>
-      <x>322</x>
+      <x>318</x>
       <y>320</y>
       <width>131</width>
       <height>31</height>
@@ -129,9 +136,9 @@ color: #000000</string>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
-    background-color:  rgb(138, 178, 127);
+    background-color:  #28899B;
     color: white; 
-    border: none;
+	border: 3px inset lightblue;
     border-radius: 5px; 
     font-size: 12pt;
     font-weight: bold;
@@ -139,7 +146,7 @@ color: #000000</string>
 }
 
 QPushButton:hover {
-    background-color: rgb(98, 138, 87);
+    background-color: #017186;
     transform: scale(1.05); 
 }
 </string>
@@ -159,7 +166,7 @@ QPushButton:hover {
     </property>
     <property name="styleSheet">
      <string notr="true">text-align: center;
-color: #000000;</string>
+color: #ffffff;</string>
     </property>
     <property name="text">
      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -168,7 +175,7 @@ color: #000000;</string>
    <widget class="QPushButton" name="getregistr">
     <property name="geometry">
      <rect>
-      <x>322</x>
+      <x>318</x>
       <y>360</y>
       <width>131</width>
       <height>31</height>
@@ -176,9 +183,9 @@ color: #000000;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
-    background-color:  rgb(138, 178, 127);
+    background-color:  #28899B;
     color: white; 
-    border: none;
+	border: 3px inset lightblue;
     border-radius: 5px; 
     font-size: 12pt;
     font-weight: bold;
@@ -186,7 +193,7 @@ color: #000000;</string>
 }
 
 QPushButton:hover {
-    background-color: rgb(98, 138, 87);
+    background-color: #017186;
     transform: scale(1.05); 
 }
 </string>
@@ -198,17 +205,17 @@ QPushButton:hover {
    <widget class="QPushButton" name="send">
     <property name="geometry">
      <rect>
-      <x>570</x>
-      <y>380</y>
+      <x>600</x>
+      <y>480</y>
       <width>81</width>
-      <height>23</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
-    background-color:  rgb(138, 178, 127);
+    background-color:  #28899B;
     color: white; 
-    border: none;
+	border:2px inset lightblue;
     border-radius: 5px; 
     font-size: 10pt;
     font-weight: bold;
@@ -216,7 +223,7 @@ QPushButton:hover {
 }
 
 QPushButton:hover {
-    background-color: rgb(98, 138, 87);
+    background-color: #017186;
     transform: scale(1.05); 
 }
 </string>
@@ -235,9 +242,15 @@ QPushButton:hover {
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: #e9e8e1;
-border: 2px solid rgba(208, 207, 202, 0.9);
-color: #000000</string>
+     <string notr="true">QListWidget{
+background-color: #3e3e3e;
+color: #ffffff;
+border: 2px inset lightblue;}
+QListWidget::item{
+border: 1px groove rgb(14, 112, 154);
+color: #ffffff;
+}
+</string>
     </property>
    </widget>
    <widget class="QListWidget" name="messagelist">
@@ -245,35 +258,38 @@ color: #000000</string>
      <rect>
       <x>170</x>
       <y>10</y>
-      <width>481</width>
-      <height>371</height>
+      <width>511</width>
+      <height>471</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: #e9e8e1;
-border: 2px solid rgba(208, 207, 202, 0.9);
-color: #000000</string>
+     <string notr="true">background-color: #3e3e3e;
+border: 2px solid #4e4e4e;
+color: #ffffff;
+border: 2px inset lightblue;</string>
     </property>
    </widget>
    <widget class="QLineEdit" name="message">
     <property name="geometry">
      <rect>
       <x>170</x>
-      <y>380</y>
-      <width>401</width>
+      <y>480</y>
+      <width>431</width>
       <height>21</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">background-color: #e9e8e1;
-border: 2px solid rgba(208, 207, 202, 0.9);
-color: #000000;</string>
+     <string notr="true">background-color: #3e3e3e;
+border: 2px solid #4e4e4e;
+color: #ffffff;
+text-align: center;
+border: 2px inset lightblue;</string>
     </property>
    </widget>
    <widget class="QPushButton" name="add">
     <property name="geometry">
      <rect>
-      <x>7</x>
+      <x>6</x>
       <y>410</y>
       <width>71</width>
       <height>21</height>
@@ -281,9 +297,9 @@ color: #000000;</string>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
-    background-color:  rgb(138, 178, 127);
+    background-color:  #28899B;
     color: white; 
-    border: none;
+	border: 3px inset lightblue;
     border-radius: 5px; 
     font-size: 10pt;
     font-weight: bold;
@@ -291,7 +307,7 @@ color: #000000;</string>
 }
 
 QPushButton:hover {
-    background-color: rgb(98, 138, 87);
+    background-color: #017186;
     transform: scale(1.05); 
 }
 </string>
@@ -303,7 +319,7 @@ QPushButton:hover {
    <widget class="QPushButton" name="delet">
     <property name="geometry">
      <rect>
-      <x>7</x>
+      <x>46</x>
       <y>445</y>
       <width>71</width>
       <height>21</height>
@@ -311,9 +327,9 @@ QPushButton:hover {
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
-    background-color:  rgb(138, 178, 127);
+    background-color:  #28899B;
     color: white; 
-    border: none;
+	border: 3px inset lightblue;
     border-radius: 5px; 
     font-size: 10pt;
     font-weight: bold;
@@ -321,7 +337,7 @@ QPushButton:hover {
 }
 
 QPushButton:hover {
-    background-color: rgb(98, 138, 87);
+    background-color: #017186;
     transform: scale(1.05); 
 }
 </string>
@@ -341,9 +357,9 @@ QPushButton:hover {
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
-    background-color:  rgb(138, 178, 127);
+    background-color:  #28899B;
     color: white; 
-    border: none;
+	border: 3px inset lightblue;
     border-radius: 5px; 
     font-size: 10pt;
     font-weight: bold;
@@ -351,7 +367,7 @@ QPushButton:hover {
 }
 
 QPushButton:hover {
-    background-color: rgb(98, 138, 87);
+    background-color: #017186;
     transform: scale(1.05); 
 }
 </string>
@@ -363,15 +379,15 @@ QPushButton:hover {
    <widget class="QLabel" name="error1">
     <property name="geometry">
      <rect>
-      <x>340</x>
-      <y>410</y>
-      <width>161</width>
+      <x>10</x>
+      <y>480</y>
+      <width>151</width>
       <height>21</height>
      </rect>
     </property>
     <property name="styleSheet">
-     <string notr="true">color: #000000;
-text-align: center;</string>
+     <string notr="true">text-align: center;
+color: #ffffff;</string>
     </property>
     <property name="text">
      <string/>
@@ -427,6 +443,10 @@ class Cilantromes(QMainWindow):
         self.send.clicked.connect(self.send_mes)
         self.update.clicked.connect(self.updt)
 
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.updt)  # Подключаем обработчик
+        self.timer.start(1000)  # Запускаем таймер с интервалом 1000 мс (1 секунда)
+
         self.password.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
 
     def log(self):
@@ -479,44 +499,7 @@ class Cilantromes(QMainWindow):
                         for j in range(len(self.data)):
                             self.peoplelist.addItem(self.data[j][1])
 
-                    # функция uptd()
-                    db = sqlite3.connect('members.db')
-                    c = db.cursor()
-                    newmes = c.execute(f"""SELECT newmessage FROM info
-                                                WHERE login = '{self.login_user}'""").fetchall()[0][0].split('α1')
-                    db.close()
-                    print(newmes)
-                    newmes.remove('')
-                    if len(newmes) > 0:
-                        db = sqlite3.connect(f'local_{self.login_user}.db')
-                        c = db.cursor()
-                        logins = c.execute(f'''SELECT login FROM info''').fetchall()
-                        logins = list(map(lambda x: x[0], logins))
-                        for i in range(len(newmes)):
-                            if newmes[i].split(':')[0] not in logins:
-                                c.execute(f"INSERT INTO info VALUES ('{newmes[i].split(':')[0]}',  '')")
-                                db.commit()
-                            mes = c.execute(f'''SELECT message FROM info
-                                                WHERE login = '{newmes[i].split(':')[0]}' ''').fetchall()[0][0]
-                            c.execute(f'''UPDATE info
-                                                SET message = '{mes + newmes[i] + 'α1'}'
-                                                WHERE login = '{newmes[i].split(':')[0]}' ''')
-                            if self.peoplelist.count() == 0:
-                                self.peoplelist.addItem(newmes[i].split(':')[0])
-                            else:
-                                for j in range(self.peoplelist.count()):
-                                    if newmes[i].split(':')[0] not in self.peoplelist.item(j).text():
-                                        self.peoplelist.addItem(newmes[i].split(':')[0])
-                        db.commit()
-                        db.close()
-
-                        db = sqlite3.connect('members.db')
-                        c = db.cursor()
-                        c.execute(f'''UPDATE info
-                                SET newmessage = '' 
-                                WHERE login = '{self.login_user}' ''')
-                        db.commit()
-                        db.close()
+                        self.updt()
 
                     break
                 else:
@@ -528,44 +511,56 @@ class Cilantromes(QMainWindow):
             self.getregistr.show()
 
     def updt(self):
-        db = sqlite3.connect('members.db')
-        c = db.cursor()
-        newmes = c.execute(f"""SELECT newmessage FROM info
-                                                        WHERE login = '{self.login_user}'""").fetchall()[0][0].split(
-            'α1')
-        db.close()
-        print(newmes)
-        newmes.remove('')
-        if len(newmes) > 0:
-            db = sqlite3.connect(f'local_{self.login_user}.db')
-            c = db.cursor()
-            logins = c.execute(f'''SELECT login FROM info''').fetchall()
-            logins = list(map(lambda x: x[0], logins))
-            for i in range(len(newmes)):
-                if newmes[i].split(':')[0] not in logins:
-                    c.execute(f"INSERT INTO info VALUES ('{newmes[i].split(':')[0]}',  '')")
-                    db.commit()
-                mes = c.execute(f'''SELECT message FROM info
-                                WHERE login = '{newmes[i].split(':')[0]}' ''').fetchall()[0][0]
-                c.execute(f'''UPDATE info
-                            SET message = '{mes + newmes[i] + 'α1'}'
-                            WHERE login = '{newmes[i].split(':')[0]}' ''')
-                if self.peoplelist.count() == 0:
-                    self.peoplelist.addItem(newmes[i].split(':')[0])
-                else:
-                    for j in range(self.peoplelist.count()):
-                        if newmes[i].split(':')[0] not in self.peoplelist.item(j).text():
-                            self.peoplelist.addItem(newmes[i].split(':')[0])
-            db.commit()
-            db.close()
-
+        flag_user_people = False
+        if self.login_user != '':
             db = sqlite3.connect('members.db')
             c = db.cursor()
-            c.execute(f'''UPDATE info
-                        SET newmessage = '' 
-                        WHERE login = '{self.login_user}' ''')
-            db.commit()
+            newmes = c.execute(f"""SELECT newmessage FROM info
+                                                            WHERE login = '{self.login_user}'""").fetchall()[0][
+                0].split(
+                'α1')
             db.close()
+            newmes.remove('')
+            if len(newmes) > 0:
+                db = sqlite3.connect(f'local_{self.login_user}.db')
+                c = db.cursor()
+                logins = c.execute(f'''SELECT login FROM info''').fetchall()
+                logins = list(map(lambda x: x[0], logins))
+                for i in range(len(newmes)):
+                    if newmes[i].split(':')[0] not in logins:
+                        c.execute(f"INSERT INTO info VALUES ('{newmes[i].split(':')[0]}',  '')")
+                        db.commit()
+                    mes = c.execute(f'''SELECT message FROM info
+                                    WHERE login = '{newmes[i].split(':')[0]}' ''').fetchall()[0][0]
+                    c.execute(f'''UPDATE info
+                                SET message = '{mes + newmes[i] + 'α1'}'
+                                WHERE login = '{newmes[i].split(':')[0]}' ''')
+
+                    if self.peoplelist.count() == 0:
+                        self.peoplelist.addItem(newmes[i].split(':')[0])
+                    else:
+                        for j in range(self.peoplelist.count()):
+                            if newmes[i].split(':')[0] in self.peoplelist.item(j).text():
+                                flag_user_people = True
+                                break
+
+                        if not flag_user_people:
+                            self.peoplelist.addItem(newmes[i].split(':')[0])
+                db.commit()
+                db.close()
+
+                db = sqlite3.connect('members.db')
+                c = db.cursor()
+                c.execute(f'''UPDATE info
+                            SET newmessage = '' 
+                            WHERE login = '{self.login_user}' ''')
+                db.commit()
+                db.close()
+                if self.users != '':
+                    for i in range(self.peoplelist.count()):
+                        if self.peoplelist.item(i).text() == self.users:
+                            self.get_username(self.peoplelist.item(i))
+                            break
 
     def registr(self):
         login = self.login.text()
@@ -663,6 +658,7 @@ class Cilantromes(QMainWindow):
                 flag_not_user = False
                 flag_this_user = False
         if ok_pressed:
+
             flag_in_db = False
             self.peoplelist.addItem(name)
             db = sqlite3.connect(f'local_{self.login_user}.db')
