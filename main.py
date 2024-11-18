@@ -136,17 +136,17 @@ text-align: center;</string>
     <property name="styleSheet">
      <string notr="true">QPushButton {
     background-color:  #28899B;
-    color: white; 
+    color: white;
 	border: 3px inset lightblue;
-    border-radius: 5px; 
+    border-radius: 5px;
     font-size: 12pt;
     font-weight: bold;
-    transition: background-color 0.3s, transform 0.2s; 
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 QPushButton:hover {
     background-color: #017186;
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
 </string>
     </property>
@@ -183,17 +183,17 @@ color: #ffffff;</string>
     <property name="styleSheet">
      <string notr="true">QPushButton {
     background-color:  #28899B;
-    color: white; 
+    color: white;
 	border: 3px inset lightblue;
-    border-radius: 5px; 
+    border-radius: 5px;
     font-size: 12pt;
     font-weight: bold;
-    transition: background-color 0.3s, transform 0.2s; 
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 QPushButton:hover {
     background-color: #017186;
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
 </string>
     </property>
@@ -213,17 +213,17 @@ QPushButton:hover {
     <property name="styleSheet">
      <string notr="true">QPushButton {
     background-color:  #28899B;
-    color: white; 
+    color: white;
 	border:2px inset lightblue;
-    border-radius: 5px; 
+    border-radius: 5px;
     font-size: 10pt;
     font-weight: bold;
-    transition: background-color 0.3s, transform 0.2s; 
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 QPushButton:hover {
     background-color: #017186;
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
 </string>
     </property>
@@ -291,23 +291,23 @@ border: 2px inset lightblue;</string>
       <x>6</x>
       <y>410</y>
       <width>71</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
     background-color:  #28899B;
-    color: white; 
+    color: white;
 	border: 3px inset lightblue;
-    border-radius: 5px; 
+    border-radius: 5px;
     font-size: 10pt;
     font-weight: bold;
-    transition: background-color 0.3s, transform 0.2s; 
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 QPushButton:hover {
     background-color: #017186;
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
 </string>
     </property>
@@ -318,61 +318,31 @@ QPushButton:hover {
    <widget class="QPushButton" name="delet">
     <property name="geometry">
      <rect>
-      <x>46</x>
-      <y>445</y>
+      <x>90</x>
+      <y>410</y>
       <width>71</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">QPushButton {
     background-color:  #28899B;
-    color: white; 
+    color: white;
 	border: 3px inset lightblue;
-    border-radius: 5px; 
+    border-radius: 5px;
     font-size: 10pt;
     font-weight: bold;
-    transition: background-color 0.3s, transform 0.2s; 
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 QPushButton:hover {
     background-color: #017186;
-    transform: scale(1.05); 
+    transform: scale(1.05);
 }
 </string>
     </property>
     <property name="text">
      <string>удалить</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="update">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>410</y>
-      <width>71</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-    background-color:  #28899B;
-    color: white; 
-	border: 3px inset lightblue;
-    border-radius: 5px; 
-    font-size: 10pt;
-    font-weight: bold;
-    transition: background-color 0.3s, transform 0.2s; 
-}
-
-QPushButton:hover {
-    background-color: #017186;
-    transform: scale(1.05); 
-}
-</string>
-    </property>
-    <property name="text">
-     <string>обновить</string>
     </property>
    </widget>
    <widget class="QLabel" name="error1">
@@ -394,7 +364,6 @@ color: #ffffff;</string>
    </widget>
    <zorder>add</zorder>
    <zorder>delet</zorder>
-   <zorder>update</zorder>
    <zorder>peoplelist</zorder>
    <zorder>messagelist</zorder>
    <zorder>message</zorder>
@@ -431,7 +400,6 @@ class Cilantromes(QMainWindow):
         self.messagelist.hide()
         self.peoplelist.hide()
         self.send.hide()
-        self.update.hide()
         self.message.hide()
         self.getregistr.hide()
         # кнопки
@@ -441,7 +409,6 @@ class Cilantromes(QMainWindow):
         self.delet.clicked.connect(self.del_user)
         self.peoplelist.itemClicked.connect(self.get_username)
         self.send.clicked.connect(self.send_mes)
-        self.update.clicked.connect(self.updt)
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.updt)  # Подключаем обработчик
@@ -477,7 +444,6 @@ class Cilantromes(QMainWindow):
                     self.messagelist.show()
                     self.peoplelist.show()
                     self.send.show()
-                    self.update.show()
                     self.message.show()
                     flag = False
                     db = sqlite3.connect(f'local_{self.login_user}.db')
@@ -498,8 +464,7 @@ class Cilantromes(QMainWindow):
                         db.close()
                         for j in range(len(self.data)):
                             self.peoplelist.addItem(self.data[j][1])
-                        self.user_in_mes = True
-                        self.updt()
+                    self.user_in_mes = True
 
                     break
                 else:
@@ -521,9 +486,7 @@ class Cilantromes(QMainWindow):
         if self.login_user != '' and self.user_in_mes:
             db = sqlite3.connect('members.db')
             c = db.cursor()
-            newmes = c.execute(f"""SELECT newmessage FROM info
-                                                            WHERE login = '{self.login_user}'""").fetchall()[0][
-                0].split('α1')
+            newmes = c.execute(f"""SELECT newmessage FROM info WHERE login = '{self.login_user}'""").fetchall()[0][0].split('α1')
             db.close()
             newmes.remove('')
             if len(newmes) > 0:

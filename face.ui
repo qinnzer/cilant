@@ -283,7 +283,7 @@ border: 2px inset lightblue;</string>
       <x>6</x>
       <y>410</y>
       <width>71</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -310,10 +310,10 @@ QPushButton:hover {
    <widget class="QPushButton" name="delet">
     <property name="geometry">
      <rect>
-      <x>46</x>
-      <y>445</y>
+      <x>90</x>
+      <y>410</y>
       <width>71</width>
-      <height>21</height>
+      <height>31</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -337,36 +337,6 @@ QPushButton:hover {
      <string>удалить</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="update">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>410</y>
-      <width>71</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">QPushButton {
-    background-color:  #28899B;
-    color: white;
-	border: 3px inset lightblue;
-    border-radius: 5px;
-    font-size: 10pt;
-    font-weight: bold;
-    transition: background-color 0.3s, transform 0.2s;
-}
-
-QPushButton:hover {
-    background-color: #017186;
-    transform: scale(1.05);
-}
-</string>
-    </property>
-    <property name="text">
-     <string>обновить</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="error1">
     <property name="geometry">
      <rect>
@@ -386,7 +356,6 @@ color: #ffffff;</string>
    </widget>
    <zorder>add</zorder>
    <zorder>delet</zorder>
-   <zorder>update</zorder>
    <zorder>peoplelist</zorder>
    <zorder>messagelist</zorder>
    <zorder>message</zorder>
