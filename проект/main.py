@@ -389,11 +389,12 @@ class Cilantromes(QMainWindow):
     def __init__(self):
         self.user_in_mes = False
         super().__init__()
+        f = io.StringIO(template)
+        uic.loadUi(f, self)
+
         self.users = ''
         self.login_user = ''
         self.data = list()
-        f = io.StringIO(template)
-        uic.loadUi(f, self)
         # скрытие лишних виджетов
         self.add.hide()
         self.delet.hide()
@@ -412,7 +413,7 @@ class Cilantromes(QMainWindow):
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.updt)  # Подключаем обработчик
-        self.timer.start(1000)  # Запускаем таймер с интервалом 1000 мс (1 секунда)
+        self.timer.start(1000)
 
         self.password.setEchoMode(QtWidgets.QLineEdit.EchoMode.Password)
 
@@ -458,10 +459,6 @@ class Cilantromes(QMainWindow):
                     self.data = c.execute("SELECT rowid,  * FROM info").fetchall()
                     db.close()
                     if len(self.data) > 0:
-                        db = sqlite3.connect(f'local_{self.login_user}.db')
-                        c = db.cursor()
-                        self.data = c.execute("SELECT rowid,  * FROM info").fetchall()
-                        db.close()
                         for j in range(len(self.data)):
                             self.peoplelist.addItem(self.data[j][1])
                     self.user_in_mes = True
@@ -477,16 +474,17 @@ class Cilantromes(QMainWindow):
 
     def keyPressEvent(self, event):
         key = event.key()
-        if key == 16777220:
+        if key == 16777220:  # ENTER
             if self.users != '' and self.login_user != '':
                 self.send_mes()
 
     def updt(self):
-        flag_user_people = False
+        flag_user_people = False  # человек в поле пользователей
         if self.login_user != '' and self.user_in_mes:
             db = sqlite3.connect('members.db')
             c = db.cursor()
-            newmes = c.execute(f"""SELECT newmessage FROM info WHERE login = '{self.login_user}'""").fetchall()[0][0].split('α1')
+            newmes = c.execute(f"""SELECT newmessage FROM info WHERE login = '{self.login_user}'""").fetchall()[0][
+                0].split('α1')
             db.close()
             newmes.remove('')
             if len(newmes) > 0:
@@ -496,6 +494,7 @@ class Cilantromes(QMainWindow):
                 logins = list(map(lambda x: x[0], logins))
                 for i in range(len(newmes)):
                     if newmes[i].split(':')[0] not in logins:
+                        print(newmes[i].split(':')[0])
                         c.execute(f"INSERT INTO info VALUES ('{newmes[i].split(':')[0]}',  '')")
                         db.commit()
                     mes = c.execute(f'''SELECT message FROM info
